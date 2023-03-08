@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const app = express()
 const port = 3000
-const mainFolder = './main-dir/'
+const mainFolder = './mainFolder/'
 app.use(fileUpload());
 
 function getFromDir (path) {
