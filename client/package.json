@@ -1,0 +1,57 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@heroicons/react": "^2.0.16",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^10.4.14",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
+    "copyfiles": "^2.4.1",
+    "cssnano": "^5.1.15",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^10.1.0",
+    "react": "^18.2.0",
+    "react-bootstrap-icons": "^1.10.2",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.59.3",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start npm-run-all copy --parallel watch serve ",
+    "build": "react-scripts build npm-run-all copy:html build:*",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:sass": "sass  --no-source-map src/scss:build/css",
+    "copy:html": "copyfiles -u 1 ./src/*.html build",
+    "copy": "npm-run-all --parallel copy:*",
+    "watch:html": "onchange 'src/*.html' -- npm run copy:html",
+    "watch:sass": "sass  --no-source-map --watch src/scss:build/css",
+    "watch": "npm-run-all --parallel watch:*",
+    "serve": "browser-sync start --server build --files build",
+    "postbuild": "postcss build/static/css/*.css -u autoprefixer cssnano -r --no-map"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
